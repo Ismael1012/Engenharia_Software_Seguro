@@ -1,10 +1,10 @@
 # Modelagem de Ameaças com STRIDE
 
-Trabalho desenvolvido para a disciplina de [Engenharia de Software Seguro].
+Trabalho desenvolvido para a disciplina de Engenharia de Software Seguro.
 
 ## Sistema escolhido
 
-[Aplicativo de Delivery]
+Aplicativo de Delivery
 
 ## Integrantes
 
