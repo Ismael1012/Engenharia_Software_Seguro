@@ -9,7 +9,7 @@ Aplicativo de Delivery
 ## Integrantes
 
 - Ismael Hister Oliveira - 2410102162
-- Nome do integrante 2
+- Luis Francisco Brum Gomes - 2310100558
 - Nome do integrante 3
 - Nome do integrante 4
 
