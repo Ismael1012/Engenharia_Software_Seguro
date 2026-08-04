@@ -11,7 +11,7 @@ Aplicativo de Delivery
 - Ismael Hister Oliveira - 2410102162
 - Luis Francisco Brum Gomes - 2310100558
 - Ezequiel dos Santos Pereira - 2510200470
-- Nome do integrante 4
+- Davi Tito Tafernaberry - 2410101763
 
 ## Documento principal
 
