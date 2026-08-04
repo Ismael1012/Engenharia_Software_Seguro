@@ -18,3 +18,7 @@ Aplicativo de Delivery
 A documentação da análise de segurança está disponível em:
 
 [Modelagem de ameaças](docs/modelagem-de-ameacas.md)
+
+## Levantamento com stakeholders
+
+O roteiro e as entrevistas por perfil estão em [docs/levantamento-stakeholders](docs/levantamento-stakeholders/).
