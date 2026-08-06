@@ -296,9 +296,9 @@ As ameaças consideradas mais preocupantes são a invasão de contas, a exposiç
 
 Os ativos mais importantes são as credenciais de acesso, os dados pessoais dos clientes, os endereços de entrega, os históricos de pedidos, os valores dos pagamentos, as informações dos produtos e os registros de status dos pedidos e das entregas.
 
-Os casos de abuso com maior impacto são a invasão de contas de usuários, o acesso indevido a dados pessoais, a manipulação do valor de pedidos, a confirmação de entregas não realizadas e a criação de contas falsas. Esses abusos podem causar prejuízos financeiros, violações de privacidade, fraudes, conflitos entre os participantes da plataforma e perda de confiança no sistema. :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1} :contentReference[oaicite:2]{index=2}
+Os casos de abuso com maior impacto são a invasão de contas de usuários, o acesso indevido a dados pessoais, a manipulação do valor de pedidos, a confirmação de entregas não realizadas e a criação de contas falsas. Esses abusos podem causar prejuízos financeiros, violações de privacidade, fraudes, conflitos entre os participantes da plataforma e perda de confiança no sistema.
 
-A indisponibilidade do aplicativo também representa uma ameaça relevante, pois pode impedir simultaneamente o acesso de clientes, restaurantes, entregadores e administradores. Durante uma interrupção, pedidos deixam de ser realizados, pagamentos podem não ser concluídos e entregas em andamento podem ficar sem atualização. :contentReference[oaicite:3]{index=3}
+A indisponibilidade do aplicativo também representa uma ameaça relevante, pois pode impedir simultaneamente o acesso de clientes, restaurantes, entregadores e administradores. Durante uma interrupção, pedidos deixam de ser realizados, pagamentos podem não ser concluídos e entregas em andamento podem ficar sem atualização.
 
 A principal dificuldade da análise foi diferenciar ameaças genéricas de situações concretas relacionadas ao funcionamento do aplicativo de delivery. Também foi necessário identificar quando um mesmo caso de abuso poderia estar relacionado a mais de uma categoria do STRIDE, como ocorre na invasão de conta, que pode envolver falsificação de identidade, alteração de dados e acesso indevido a informações.
 
