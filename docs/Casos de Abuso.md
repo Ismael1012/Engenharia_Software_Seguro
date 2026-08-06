@@ -203,3 +203,105 @@ As contas dos usuários estão diretamente ligadas a identidade digital; produto
 **Impacto esperado:** exclusão indevida, perda de clientes e quebra de confiança.
 
 **Categorias STRIDE relacionadas:** Denial of Service e Elevation of Privilege.
+
+---
+
+### CA09 — Indisponibilizar o aplicativo  
+**Ator:** atacante externo.
+
+**Objetivo:** impedir que clientes, restaurantes, entregadores e administradores utilizem o aplicativo normalmente.
+
+**Condições necessárias:**
+
+- o sistema não possui mecanismos adequados de limitação de requisições;
+- a infraestrutura não consegue absorver grande volume de acessos;
+- não existem proteções contra ataques de negação de serviço.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica endpoints públicos do aplicativo.
+2. O atacante envia grande quantidade de requisições simultâneas.
+3. Os servidores passam a consumir excessivamente seus recursos.
+4. O sistema apresenta lentidão, falhas ou indisponibilidade.
+5. Usuários legítimos deixam de conseguir acessar ou realizar pedidos.
+
+**Impacto esperado:** indisponibilidade do serviço, perda de vendas, atrasos em pedidos e danos à reputação da plataforma.
+
+**Categorias STRIDE relacionadas:** Denial of Service.
+
+---
+
+### CA10 — Acessar dados pessoais de clientes  
+**Ator:** atacante externo, entregador mal-intencionado, restaurante mal-intencionado ou administrador mal-intencionado.
+
+**Objetivo:** obter indevidamente informações pessoais de clientes, como nome, telefone, endereço, localização ou histórico de pedidos.
+
+**Condições necessárias:**
+
+- o sistema possui falhas de autorização;
+- os dados são disponibilizados para usuários sem necessidade operacional;
+- não existem controles adequados sobre o acesso às informações pessoais.
+
+**Fluxo de abuso:**
+
+1. O agente mal-intencionado acessa uma funcionalidade contendo dados de clientes.
+2. O sistema não verifica corretamente se o usuário possui permissão.
+3. O agente consulta informações de clientes com os quais não possui relação.
+4. Os dados são copiados, armazenados ou compartilhados indevidamente.
+5. As informações podem ser utilizadas para fraude, perseguição ou outros crimes.
+
+**Impacto esperado:** violação de privacidade, exposição de endereços, risco à segurança física dos clientes e sanções legais para a plataforma.
+
+**Categorias STRIDE relacionadas:** Information Disclosure e Elevation of Privilege.
+
+---
+
+### CA11 — Criar conta falsa de restaurante ou entregador  
+**Ator:** fraudador.
+
+**Objetivo:** passar-se por um restaurante ou entregador legítimo para obter dinheiro, pedidos ou informações pessoais de clientes.
+
+**Condições necessárias:**
+
+- o sistema não verifica adequadamente documentos e identidade;
+- o cadastro de restaurantes ou entregadores é aprovado automaticamente;
+- os dados fornecidos não são comparados com fontes confiáveis.
+
+**Fluxo de abuso:**
+
+1. O usuário mal-intencionado inicia o cadastro como restaurante ou entregador.
+2. O atacante fornece informações falsas ou documentos adulterados.
+3. O sistema aceita o cadastro sem validação suficiente.
+4. A conta recebe permissões destinadas ao perfil informado.
+5. O atacante acessa pedidos, pagamentos ou dados pessoais de clientes.
+
+**Impacto esperado:** fraude financeira, exposição de dados pessoais, roubo de pedidos e perda de confiança na plataforma.
+
+**Categorias STRIDE relacionadas:** Spoofing, Tampering e Elevation of Privilege.
+
+---
+
+### CA12 — Solicitar reembolso fraudulento  
+**Ator:** cliente mal-intencionado.
+
+**Objetivo:** obter a devolução do valor de um pedido que foi entregue corretamente.
+
+**Condições necessárias:**
+
+- o sistema permite solicitações de reembolso sem provas suficientes;
+- não existe confirmação confiável da entrega;
+- os registros do pedido são incompletos ou facilmente contestáveis.
+
+**Fluxo de abuso:**
+
+1. O cliente realiza um pedido normalmente.
+2. O pedido é preparado e entregue corretamente.
+3. O cliente informa falsamente que o pedido não foi entregue ou chegou incorreto.
+4. O cliente solicita o reembolso pelo suporte.
+5. O sistema aprova a devolução sem verificar adequadamente os registros.
+6. O cliente permanece com o pedido e recebe o valor de volta.
+
+**Impacto esperado:** prejuízo financeiro para o restaurante ou plataforma, aumento de fraudes e conflitos com entregadores.
+
+**Categorias STRIDE relacionadas:** Repudiation e Tampering.
+
