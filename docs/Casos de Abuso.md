@@ -1,3 +1,20 @@
+### 5. Modelagem de ameaças com STRIDE
+
+| ID | Categoria STRIDE | Componente ou ativo | Ameaça identificada | Possível impacto |
+| --- | --- | --- | --- | --- |
+| T01 | Spoofing | Conta do usuário | Invadir conta de usuário | Roubo de dados, pedidos indevidos |
+| T02 | Elevation of Privilege | Painel administrativo | Alterar dados de outra conta | Fraude, inconsistência de dados |
+| T03 | Tampering | Produtos e cardápio | Alterar produto ou preço indevidamente | Manipulação de preços, fraude financeira e reclamações |
+| T04 | Repudiation | Status de entregas | Confirmar entrega não realizada | Prejuízo financeiro |
+| T05 | Information Disclosure | Sistema de avaliações | Publicar avaliação falsa | Manipulação de reputação, impacto financeiro | 
+| T06 | Denial of Service | Controle de acesso | Bloquar usuário sem justificativa | Exclusão indevida, perda de clientes |
+
+### 5.1 Interpretação da análise
+
+Através da análise dos diagramas é evidente que diferentes partes do sistema precisam de mecanismos específicos de proteção. Cada categoria aponta para um tipo de vulnerabilidade e, consequentemente, para controles distintos. 
+As contas dos usuários estão diretamente ligadas a identidade digital; produtos e pedidos dependem da integridade dos dados; logs e registros são fundamentais para responsabilizar autores das operações; sistema de avaliações exige confidencialidade e veracidade; portal e controle de acesso devem permanecer disponíveis e acessíveis apenas a usuários autorizados; funções administrativas devem ser acessíveis somente por usuários autorizado.
+
+
 ## 6. Casos de abuso
 ### CA01 — Invadir conta de usuário  
 **Ator:** atacante externo.
