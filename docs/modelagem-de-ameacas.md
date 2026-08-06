@@ -27,6 +27,34 @@ Para realizar essas operações, o sistema armazena ou transmite dados de identi
 
 Os recursos que exigem maior proteção são as contas e credenciais, os dados pessoais e de localização, os dados e transações de pagamento, a integridade dos pedidos e seus status, as permissões administrativas e os registros de auditoria. O comprometimento desses recursos pode causar fraude financeira, exposição de privacidade, entregas indevidas, prejuízo operacional e perda de confiança no serviço.
 
+## 3. Usuários, ativos e pontos de interação
+
+Os perfis, ativos críticos e componentes do sistema estão detalhados em [Usuários, ativos e pontos de interação](Usuários,%20ativos%20e%20pontos%20de%20interação.md).
+
+## 4. Visão geral da arquitetura e do fluxo
+
+O Entrega Fácil é composto por aplicativos móveis ou interfaces web para Cliente, Restaurante, Entregador e Administrador. Essas interfaces se comunicam com uma API de back-end, que aplica autenticação e autorização, processa pedidos, pagamentos, atualizações de entrega, suporte e ações administrativas. O back-end persiste os dados em banco de dados e integra serviços externos de pagamento, geolocalização e notificações.
+
+| Etapa | Origem e destino | Informações ou ação principal |
+| --- | --- | --- |
+| Cadastro e acesso | Perfis → API de autenticação → banco de dados | Identidade, credenciais, sessões e permissões |
+| Criação do pedido | Cliente → API → Restaurante | Itens, preços, endereço, pagamento e observações |
+| Preparo e despacho | Restaurante → API → Entregador | Aceite, disponibilidade, status e dados necessários à retirada |
+| Entrega | Entregador → API → Cliente | Rota, localização temporária, status e confirmação de entrega |
+| Pagamentos | API ↔ serviço de pagamentos | Cobranças, confirmações, reembolsos e repasses |
+| Comunicação | Perfis ↔ API ↔ serviço de notificações/chat | Mensagens vinculadas ao pedido e alertas de status |
+| Administração | Administrador → API → banco de dados | Atendimento, denúncias, permissões, bloqueios e logs de auditoria |
+
+O [diagrama de casos de uso](../diagramas/diagrama-caso-de-uso.png) complementa esse fluxo ao mostrar as funcionalidades disponíveis para cada perfil. Seu arquivo-fonte está versionado em [diagrama-caso-de-uso.drawio](../diagramas/diagrama-caso-de-uso.drawio).
+
+## 5. Modelagem de ameaças com STRIDE
+
+A análise contextualizada das ameaças, seus ativos afetados, impactos e relações com os casos de abuso está em [Modelagem STRIDE](modelagem-stride.md).
+
+## 6. Casos de abuso
+
+Os cenários de uso malicioso e sua ligação com ameaças STRIDE estão em [Casos de abuso](Casos%20de%20Abuso.md). O [diagrama de casos de abuso](../diagramas/Casos%20de%20Abuso.png) representa os oito cenários iniciais; o arquivo-fonte também está disponível em [Casos%20de%20Abuso.drawio](../diagramas/Casos%20de%20Abuso.drawio).
+
 ## Levantamento inicial com stakeholders
 
 O levantamento de requisitos está organizado em [docs/levantamento-stakeholders](levantamento-stakeholders):
