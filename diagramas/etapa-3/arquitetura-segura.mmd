@@ -1,0 +1,10 @@
+flowchart LR
+    U[Cliente, Restaurante, Entregador e Administrador] --> I[Aplicações mobile ou web]
+    I --> G[API Gateway e WAF\nLimite por rota e origem]
+    G --> A[Autenticação\nMFA e sessões revogáveis]
+    G --> B[Serviços de negócio\nAutorização por função, vínculo e estado]
+    B --> D[(Banco de dados)]
+    B --> E[Pagamentos, mapas e notificações]
+    G --> L[Logs centralizados e monitoramento]
+    A --> L
+    B --> L
