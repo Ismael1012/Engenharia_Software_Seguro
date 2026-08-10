@@ -70,7 +70,3 @@ O documento contém critérios de probabilidade e impacto, registro de riscos R0
 │   └── levantamento-stakeholders/
 └── diagramas/                # Imagens e arquivos-fonte Draw.io
 ```
-
-## Critérios de colaboração
-
-Cada integrante deve realizar commits próprios, com alterações relevantes e mensagens descritivas. Novos documentos, diagramas, fontes dos diagramas e evidências devem permanecer versionados neste repositório. As decisões das próximas etapas devem manter rastreabilidade com a cadeia **ameaça → risco → controle → requisito → teste**.
