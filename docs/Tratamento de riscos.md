@@ -92,7 +92,7 @@ Essa ordem prioriza riscos críticos, mas também antecipa controles de autoriza
 Os níveis abaixo são estimativas esperadas após implementação, testes e obtenção das evidências previstas. Não representam risco já reduzido.
 
 | Risco | Nível inicial | Nível residual esperado | Condição para aceitar o residual |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | R01 | Crítico | Médio | MFA, limitação de tentativas, alertas e revogação de sessão aprovados em testes. |
 | R02 | Crítico | Médio | Verificação documental, aprovação de parceiros e revogação testadas em fluxos simulados. |
 | R03 | Alto | Médio | Cálculos e transições validados no servidor, histórico íntegro e testes de manipulação aprovados. |
