@@ -43,7 +43,7 @@ A pontuação permite comparar os riscos, mas não substitui a análise do conte
 
 ### 8.4 Registro de riscos
 
-| ID | Origem STRIDE e casos de abuso | Evento de risco | Vulnerabilidade ou condição | P | I | Pontuação | Nível |
+| ID | Origem STRIDE e casos de abuso | Evento de risco | Vulnerabilidade ou condição | Probabilidade | Impacto | Pontuação | Nível |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- |
 | R01 | T01 — Spoofing; CA01 | Um atacante usa credenciais comprometidas para acessar uma conta e realizar pedidos, alterações ou consultas em nome da vítima. | Ausência de MFA, proteção insuficiente contra força bruta e sessão sem revalidação em operações sensíveis. | 3 | 4 | 12 | Crítico |
 | R02 | T02 — Spoofing; CA11 | Um fraudador é aprovado como restaurante ou entregador com identidade ou documentos falsos. | Cadastro com verificação documental insuficiente e concessão automática de permissões do perfil. | 3 | 4 | 12 | Crítico |
