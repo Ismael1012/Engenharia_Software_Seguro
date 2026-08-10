@@ -22,7 +22,7 @@ Os casos abaixo descrevem cenários de uso malicioso. A relação de cada cenár
 
 **Impacto esperado:** roubo de dados, prejuízo financeiro e perda de confiança no sistema.
 
-**Categorias STRIDE relacionadas:** Spoofing, Tampering e Repudiation.
+**Categorias STRIDE relacionadas:** Spoofing e Tampering.
 
 ---
 
@@ -164,7 +164,7 @@ Os casos abaixo descrevem cenários de uso malicioso. A relação de cada cenár
 
 **Impacto esperado:** perda de credibilidade, manipulação de reputação e impacto financeiro.
 
-**Categorias STRIDE relacionadas:** Information Disclosure e Tampering.
+**Categorias STRIDE relacionadas:** Tampering.
 
 ---
 
