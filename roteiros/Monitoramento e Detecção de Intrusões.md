@@ -1,14 +1,14 @@
 # Monitoramento e Detecção de Intrusões
 
-Este documento apresenta o roteiro para o monitoramento contínuo e a detecção de intrusões no sistema Entrega Fácil, detalhando conceitos fundamentais, eventos indispensáveis para registro em log, regras de detecção alinhadas aos riscos identificados nas etapas anteriores e os procedimentos recomendados após a emissão de um alerta.
+Este documento apresenta o roteiro para o monitoramento contínuo e a detecção de intrusões no sistema **Entrega Fácil**, detalhando conceitos fundamentais, eventos indispensáveis para registro em log, regras de detecção alinhadas aos riscos identificados nas etapas anteriores e os procedimentos recomendados após a emissão de um alerta.
 
 ---
 
 ## 1. O que é Detecção de Intrusões
 
-A Detecção de Intrusões é o conjunto de processos, mecanismos e ferramentas responsáveis por monitorar continuamente os eventos que ocorrem em uma aplicação, rede ou infraestrutura, com o objetivo de identificar comportamentos anômalos, atividades suspeitas ou violações das políticas de segurança do sistema.
+A **Detecção de Intrusões** é o conjunto de processos, mecanismos e ferramentas responsáveis por monitorar continuamente os eventos que ocorrem em uma aplicação, rede ou infraestrutura, com o objetivo de identificar comportamentos anômalos, atividades suspeitas ou violações das políticas de segurança do sistema.
 
-Em uma plataforma de delivery como o Entrega Fácil a detecção de intrusões atua como uma camada contínua de vigia operacional. Ela analisa requisições à API, tentativas de autenticação, transações de pedidos/pagamentos e acessos a dados sensíveis (como endereços e localizações de clientes) para sinalizar possíveis ataques em andamento ou abusos de privilégios.
+Em uma plataforma de delivery como o **Entrega Fácil**, a detecção de intrusões atua como uma camada contínua de vigia operacional. Ela analisa requisições à API, tentativas de autenticação, transações de pedidos/pagamentos e acessos a dados sensíveis (como endereços e localizações de clientes) para sinalizar possíveis ataques em andamento ou abusos de privilégios.
 
 ---
 
@@ -104,23 +104,23 @@ Abaixo estão apresentadas três regras diretas de detecção, correlacionadas a
 
 Quando uma das regras de detecção dispara um alerta, o fluxo de **Resposta a Incidentes** deve ser iniciado de forma estruturada:
 
-1.  Triagem e Validação Inicial (Triage):
+1.  **Triagem e Validação Inicial (Triage):**
     *   Verificar se o alerta representa uma ameaça real ou um falso positivo (por exemplo, diferenciar um pico legítimo de vendas em horário de pico de um ataque DoS real).
     *   Classificar a gravidade e o impacto potencial do evento (Baixo, Médio, Alto ou Crítico).
 
-2.  Contenção Imediata (Containment):
+2.  **Contenção Imediata (Containment):**
     *   Executar ações rápidas para conter o avanço do ataque e mitigar os danos imediatos.
     *   *Exemplos de ações:* aplicar bloqueio temporário de IP no WAF, revogar tokens de sessão ativos de contas sob suspeita, suspender pontualmente o endpoint afetado ou limitar o acesso da conta investigada.
 
-3.  Investigação e Análise de Causa Raiz (Investigation & Eradication):
+3.  **Investigação e Análise de Causa Raiz (Investigation & Eradication):**
     *   Analisar os logs centralizados de auditoria para determinar o vetor do ataque, quais dados foram acessados ou modificados e a extensão do comprometimento.
     *   Corrigir a vulnerabilidade de origem (por exemplo, ajustar regras de autorização no backend, atualizar limites de taxa ou corrigir falhas de validação).
 
-4.  Recuperação e Normalização (Recovery):
+4.  **Recuperação e Normalização (Recovery):**
     *   Restabelecer o funcionamento normal dos serviços ou acessos que foram temporariamente restringidos.
     *   Desbloquear usuários legítimos que foram afetados por contramedidas automáticas após validação de identidade e redefinição de credenciais.
     *   Manter monitoramento intensivo sobre os componentes envolvidos nas horas subsequentes.
 
-5.  Revisão Pós-Incidente e Lições Aprendidas (Post-Incident Review):
+5.  **Revisão Pós-Incidente e Lições Aprendidas (Post-Incident Review):**
     *   Elaborar um relatório sumário detalhando a cronologia do evento, a eficácia do alerta e o tempo de resposta da equipe.
     *   Ajustar os limiares e parâmetros das regras de detecção para reduzir falsos positivos e aprimorar a capacidade de resposta contínua.
