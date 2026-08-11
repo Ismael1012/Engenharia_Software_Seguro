@@ -69,5 +69,5 @@ O documento contém critérios de probabilidade e impacto, registro de riscos R0
 ├── docs/                     # Documentos das etapas e entrevistas
 │   └── levantamento-stakeholders/
 └── diagramas/                # Imagens e arquivos-fonte Draw.io
-└── roteiros/                 # Documentos referetes aos roteiros
+└── roteiros/                 # Documentos referentes aos roteiros
 ```
