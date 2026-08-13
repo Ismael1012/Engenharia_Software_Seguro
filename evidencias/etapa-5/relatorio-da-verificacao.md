@@ -4,7 +4,7 @@
 
 - **Sistema testado:** [Juice Shop](https://github.com/juice-shop/juice-shop)
 - **Ferramenta utilizada:** [ZAP](https://www.zaproxy.org/)
-- **Configuração básica do teste:** Execução em modo padrão, varredura automatizada. [Tela das configurações usadas](https://github.com/Ismael1012/Engenharia_Software_Seguro/blob/main/evidencias/etapa-5/configuracoes-usadas.png?raw=true)
+- **Configuração básica do teste:** Execução em modo padrão, varredura automatizada. [Tela das configurações usadas](https://raw.githubusercontent.com/Ismael1012/Engenharia_Software_Seguro/refs/heads/main/evidencias/etapa-5/configuracoes-usadas.png))
 
 ---
 
