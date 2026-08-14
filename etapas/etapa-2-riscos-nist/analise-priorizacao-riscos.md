@@ -129,4 +129,4 @@ A ordem inicial de prioridade é:
 
 A análise mostra que as ameaças não possuem a mesma prioridade. Os riscos críticos exigem atenção inicial, mas a correção de autorização no servidor (R11) também foi antecipada porque reduz vários riscos de privacidade e de abuso de privilégios. As classificações representam uma avaliação inicial e deverão ser revistas quando houver dados reais de tráfego, incidentes, arquitetura e testes.
 
-O plano correspondente, com estratégias, funções do NIST CSF 2.0, controles, responsáveis, evidências e estimativas residuais, está em [Tratamento de riscos](Tratamento%20de%20riscos.md).
+O plano correspondente, com estratégias, funções do NIST CSF 2.0, controles, responsáveis, evidências e estimativas residuais, está em [Tratamento de riscos](tratamento-riscos.md).

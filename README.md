@@ -34,43 +34,43 @@ Repositório do grupo: [github.com/Ismael1012/Engenharia_Software_Seguro](https:
 
 | Artefato | Conteúdo |
 | --- | --- |
-| [Visão do sistema](docs/modelagem-de-ameacas.md) | Identificação, descrição, ativos, componentes e fluxo principal. |
-| [Usuários, ativos e pontos de interação](docs/Usuários%2C%20ativos%20e%20pontos%20de%20interação.md) | Perfis, dados protegidos, componentes e ativos críticos. |
-| [Modelagem STRIDE](docs/modelagem-stride.md) | Ameaças T01–T12 e relação com os casos de abuso. |
-| [Casos de abuso](docs/Casos%20de%20Abuso.md) | Cenários CA01–CA12, condições, fluxo, impacto e relação com STRIDE. |
-| [Levantamento com stakeholders](docs/levantamento-stakeholders/) | Roteiro e entrevistas por perfil. |
+| [Visão do sistema](etapas/etapa-1-modelagem-de-ameacas/modelagem-de-ameacas.md) | Identificação, descrição, ativos, componentes e fluxo principal. |
+| [Usuários, ativos e pontos de interação](etapas/etapa-1-modelagem-de-ameacas/usuarios-ativos-pontos-interacao.md) | Perfis, dados protegidos, componentes e ativos críticos. |
+| [Modelagem STRIDE](etapas/etapa-1-modelagem-de-ameacas/modelagem-stride.md) | Ameaças T01–T12 e relação com os casos de abuso. |
+| [Casos de abuso](etapas/etapa-1-modelagem-de-ameacas/casos-de-abuso.md) | Cenários CA01–CA12, condições, fluxo, impacto e relação com STRIDE. |
+| [Levantamento com stakeholders](etapas/etapa-1-modelagem-de-ameacas/levantamento-stakeholders/) | Roteiro e entrevistas por perfil. |
 
 **Diagramas versionados:**
 
-- [Diagrama de casos de uso — PNG](diagramas/diagrama-caso-de-uso.png) e [fonte Draw.io](diagramas/diagrama-caso-de-uso.drawio)
-- [Diagrama de casos de abuso — PNG](diagramas/Casos%20de%20Abuso.png) e [fonte Draw.io](diagramas/Casos%20de%20Abuso.drawio)
+- [Diagrama de casos de uso — PNG](etapas/etapa-1-modelagem-de-ameacas/diagramas/diagrama-caso-de-uso.png) e [fonte Draw.io](etapas/etapa-1-modelagem-de-ameacas/diagramas/diagrama-caso-de-uso.drawio)
+- [Diagrama de casos de abuso — PNG](etapas/etapa-1-modelagem-de-ameacas/diagramas/casos-de-abuso.png) e [fonte Draw.io](etapas/etapa-1-modelagem-de-ameacas/diagramas/casos-de-abuso.drawio)
 
 ### Etapa 2 — Análise, priorização e tratamento de riscos com NIST CSF 2.0
 
 | Artefato | Conteúdo |
 | --- | --- |
-| [Análise e priorização de riscos](docs/Análise%20e%20priorização%20de%20riscos.md) | Critérios, registro R01–R12, justificativas e ordem de prioridade. |
-| [Tratamento de riscos](docs/Tratamento%20de%20riscos.md) | Estratégias, NIST CSF 2.0, controles, responsáveis, evidências, implementação e risco residual. |
+| [Análise e priorização de riscos](etapas/etapa-2-riscos-nist/analise-priorizacao-riscos.md) | Critérios, registro R01–R12, justificativas e ordem de prioridade. |
+| [Tratamento de riscos](etapas/etapa-2-riscos-nist/tratamento-riscos.md) | Estratégias, NIST CSF 2.0, controles, responsáveis, evidências, implementação e risco residual. |
 
 ### Etapa 3 — Projeto de uma arquitetura segura
 
-[Acessar requisitos, vulnerabilidades catalogadas, diagrama e decisões de arquitetura](docs/Arquitetura-segura.md).
+[Acessar requisitos, vulnerabilidades catalogadas, diagrama e decisões de arquitetura](etapas/etapa-3-arquitetura-segura/arquitetura-segura.md).
 
 ### Etapa 4 — Código seguro e testes de segurança
 
-[Acessar as duas práticas, os testes definidos antes da solução e o pseudocódigo](docs/Codigo-seguro.md).
+[Acessar as duas práticas, os testes definidos antes da solução e o pseudocódigo](etapas/etapa-4-codigo-seguro/codigo-seguro.md).
 
 ### Etapa 5 — Verificação de vulnerabilidades
 
-[Acessar o relatório da verificação autorizada no OWASP Juice Shop](evidencias/etapa-5/relatorio-da-verificacao.md).
+[Acessar o relatório da verificação autorizada no OWASP Juice Shop](etapas/etapa-5-verificacao-vulnerabilidades/relatorio-verificacao.md).
 
 ### Etapa 6 — Monitoramento e detecção de intrusões
 
-[Acessar o roteiro de eventos, regras de detecção e resposta a alertas](roteiros/etapa-6-Monitoramento%20e%20Detecção%20de%20Intrusões.md).
+[Acessar o roteiro de eventos, regras de detecção e resposta a alertas](etapas/etapa-6-deteccao-intrusoes/deteccao-intrusoes.md).
 
 ### Etapa 7 — DevSecOps e vídeo final
 
-[Acessar o pipeline, os critérios de bloqueio e o roteiro do vídeo final](roteiros/etapa-7-devsecops-e-video-final.md).
+[Acessar o pipeline, os critérios de bloqueio e o roteiro do vídeo final](etapas/etapa-7-devsecops-video/devsecops-video-final.md).
 
 > **Vídeo final:** inserir aqui o endereço compartilhado do vídeo após a publicação, verificando o acesso pelo professor.
 
@@ -79,12 +79,28 @@ Repositório do grupo: [github.com/Ismael1012/Engenharia_Software_Seguro](https:
 ```text
 .
 ├── README.md
-├── docs/                         # Documentos das etapas 1 a 4 e entrevistas
-│   └── levantamento-stakeholders/
-├── diagramas/                    # Imagens e arquivos-fonte Draw.io/Mermaid
-│   └── etapa-3/
-├── evidencias/
-│   └── etapa-5/                  # Relatório e capturas da verificação
-└── roteiros/                     # Etapas 6 e 7
+└── etapas/
+    ├── etapa-1-modelagem-de-ameacas/
+    │   ├── modelagem-de-ameacas.md
+    │   ├── modelagem-stride.md
+    │   ├── casos-de-abuso.md
+    │   ├── usuarios-ativos-pontos-interacao.md
+    │   ├── levantamento-stakeholders/
+    │   └── diagramas/
+    ├── etapa-2-riscos-nist/
+    │   ├── analise-priorizacao-riscos.md
+    │   └── tratamento-riscos.md
+    ├── etapa-3-arquitetura-segura/
+    │   ├── arquitetura-segura.md
+    │   └── diagramas/
+    ├── etapa-4-codigo-seguro/
+    │   └── codigo-seguro.md
+    ├── etapa-5-verificacao-vulnerabilidades/
+    │   ├── relatorio-verificacao.md
+    │   └── evidencias/
+    ├── etapa-6-deteccao-intrusoes/
+    │   └── deteccao-intrusoes.md
+    └── etapa-7-devsecops-video/
+        └── devsecops-video-final.md
 
 ```

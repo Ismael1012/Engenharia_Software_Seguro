@@ -29,7 +29,7 @@ Os recursos que exigem maior proteção são as contas e credenciais, os dados p
 
 ## 3. Usuários, ativos e pontos de interação
 
-Os perfis, ativos críticos e componentes do sistema estão detalhados em [Usuários, ativos e pontos de interação](Usuários,%20ativos%20e%20pontos%20de%20interação.md).
+Os perfis, ativos críticos e componentes do sistema estão detalhados em [Usuários, ativos e pontos de interação](usuarios-ativos-pontos-interacao.md).
 
 ## 4. Visão geral da arquitetura e do fluxo
 
@@ -45,7 +45,7 @@ O Entrega Fácil é composto por aplicativos móveis ou interfaces web para Clie
 | Comunicação | Perfis ↔ API ↔ serviço de notificações/chat | Mensagens vinculadas ao pedido e alertas de status |
 | Administração | Administrador → API → banco de dados | Atendimento, denúncias, permissões, bloqueios e logs de auditoria |
 
-O [diagrama de casos de uso](../diagramas/diagrama-caso-de-uso.png) complementa esse fluxo ao mostrar as funcionalidades disponíveis para cada perfil. Seu arquivo-fonte está versionado em [diagrama-caso-de-uso.drawio](../diagramas/diagrama-caso-de-uso.drawio).
+O [diagrama de casos de uso](diagramas/diagrama-caso-de-uso.png) complementa esse fluxo ao mostrar as funcionalidades disponíveis para cada perfil. Seu arquivo-fonte está versionado em [diagrama-caso-de-uso.drawio](diagramas/diagrama-caso-de-uso.drawio).
 
 ## 5. Modelagem de ameaças com STRIDE
 
@@ -53,11 +53,11 @@ A análise contextualizada das ameaças, seus ativos afetados, impactos e relaç
 
 ## 6. Casos de abuso
 
-Os cenários de uso malicioso e sua ligação com ameaças STRIDE estão em [Casos de abuso](Casos%20de%20Abuso.md). O [diagrama de casos de abuso](../diagramas/Casos%20de%20Abuso.png) apresenta uma visão resumida dos cenários, enquanto o documento textual contém o conjunto completo CA01–CA12; o arquivo-fonte também está disponível em [Casos%20de%20Abuso.drawio](../diagramas/Casos%20de%20Abuso.drawio).
+Os cenários de uso malicioso e sua ligação com ameaças STRIDE estão em [Casos de abuso](casos-de-abuso.md). O [diagrama de casos de abuso](diagramas/casos-de-abuso.png) apresenta uma visão resumida dos cenários, enquanto o documento textual contém o conjunto completo CA01–CA12; o arquivo-fonte também está disponível em [casos-de-abuso.drawio](diagramas/casos-de-abuso.drawio).
 
 ## Levantamento inicial com stakeholders
 
-O levantamento de requisitos está organizado em [docs/levantamento-stakeholders](levantamento-stakeholders):
+O levantamento de requisitos está organizado em [levantamento-stakeholders](levantamento-stakeholders):
 
 - [Prompt da entrevista](levantamento-stakeholders/prompt-entrevista.md)
 - [Cliente](levantamento-stakeholders/cliente.md)

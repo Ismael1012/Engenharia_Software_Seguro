@@ -10,10 +10,10 @@
 
 Evidências da sessão:
 
-- [Aplicação executada localmente](sistema-explorado.png);
-- [configuração e conclusão da varredura](configuracoes-usadas.png);
-- [lista principal de alertas](alertas-gerados.png);
-- [execução auxiliar que identificou SQL Injection](teste-auxiliar.png).
+- [Aplicação executada localmente](evidencias/sistema-explorado.png);
+- [configuração e conclusão da varredura](evidencias/configuracoes-usadas.png);
+- [lista principal de alertas](evidencias/alertas-gerados.png);
+- [execução auxiliar que identificou SQL Injection](evidencias/teste-auxiliar.png).
 
 A execução principal encontrou oito tipos de alerta. Uma execução auxiliar, mantida no mesmo ambiente autorizado, ampliou a navegação e produziu também o alerta de SQL Injection. Para atender ao escopo mínimo com maior profundidade, foram selecionados três achados representativos.
 
@@ -21,9 +21,9 @@ A execução principal encontrou oito tipos de alerta. Uma execução auxiliar, 
 
 | ID | Alerta e evidência | Possível impacto | Relação com CWE/OWASP | Correção proposta |
 | --- | --- | --- | --- | --- |
-| A01 | **SQL Injection** no endpoint de pesquisa `/rest/products/search?q=`. O alerta aparece na [execução auxiliar](teste-auxiliar.png). | Uma entrada incorporada diretamente à consulta pode alterar sua estrutura, permitindo leitura ou modificação de registros conforme as permissões da conta do banco. | [CWE-89](https://cwe.mitre.org/data/definitions/89.html) e OWASP Top 10 — Injection. | Usar consultas parametrizadas em todas as consultas; evitar concatenação de entrada; executar a aplicação com usuário de banco de privilégio mínimo; validar com teste automatizado contendo metacaracteres de SQL. |
-| A02 | **CORS configurado com origem curinga**, indicado como “Configuração Incorreta Entre Domínios” na [lista principal](alertas-gerados.png), com resposta contendo `Access-Control-Allow-Origin: *`. | Permite que qualquer origem leia respostas públicas habilitadas para CORS. A exposição de dados autenticados depende também do uso de credenciais, cookies e outros cabeçalhos; por isso o impacto deve ser confirmado por endpoint. | [CWE-942](https://cwe.mitre.org/data/definitions/942.html) — Permissive Cross-domain Policy. | Substituir `*` por allowlist de origens necessárias; não refletir `Origin` sem validação; permitir credenciais somente quando indispensável; testar origens autorizada, não autorizada e `null`. |
-| A03 | **Content-Security-Policy ausente**, registrado na [lista principal](alertas-gerados.png). | A ausência de CSP não cria XSS isoladamente, mas remove uma camada de contenção caso outra falha permita injetar HTML ou JavaScript. | [CWE-693](https://cwe.mitre.org/data/definitions/693.html) — Protection Mechanism Failure; OWASP Content Security Policy Cheat Sheet. | Implantar inicialmente `Content-Security-Policy-Report-Only`, ajustar fontes necessárias e depois aplicar política como `default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'`, usando nonces ou hashes quando necessários. |
+| A01 | **SQL Injection** no endpoint de pesquisa `/rest/products/search?q=`. O alerta aparece na [execução auxiliar](evidencias/teste-auxiliar.png). | Uma entrada incorporada diretamente à consulta pode alterar sua estrutura, permitindo leitura ou modificação de registros conforme as permissões da conta do banco. | [CWE-89](https://cwe.mitre.org/data/definitions/89.html) e OWASP Top 10 — Injection. | Usar consultas parametrizadas em todas as consultas; evitar concatenação de entrada; executar a aplicação com usuário de banco de privilégio mínimo; validar com teste automatizado contendo metacaracteres de SQL. |
+| A02 | **CORS configurado com origem curinga**, indicado como “Configuração Incorreta Entre Domínios” na [lista principal](evidencias/alertas-gerados.png), com resposta contendo `Access-Control-Allow-Origin: *`. | Permite que qualquer origem leia respostas públicas habilitadas para CORS. A exposição de dados autenticados depende também do uso de credenciais, cookies e outros cabeçalhos; por isso o impacto deve ser confirmado por endpoint. | [CWE-942](https://cwe.mitre.org/data/definitions/942.html) — Permissive Cross-domain Policy. | Substituir `*` por allowlist de origens necessárias; não refletir `Origin` sem validação; permitir credenciais somente quando indispensável; testar origens autorizada, não autorizada e `null`. |
+| A03 | **Content-Security-Policy ausente**, registrado na [lista principal](evidencias/alertas-gerados.png). | A ausência de CSP não cria XSS isoladamente, mas remove uma camada de contenção caso outra falha permita injetar HTML ou JavaScript. | [CWE-693](https://cwe.mitre.org/data/definitions/693.html) — Protection Mechanism Failure; OWASP Content Security Policy Cheat Sheet. | Implantar inicialmente `Content-Security-Policy-Report-Only`, ajustar fontes necessárias e depois aplicar política como `default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'`, usando nonces ou hashes quando necessários. |
 
 ## 3. Verificação das correções
 

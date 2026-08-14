@@ -1,6 +1,6 @@
 # Etapa 4 — Código Seguro e Testes de Segurança
 
-Esta etapa demonstra, por meio de pseudocódigo, como duas decisões da [Etapa 3](Arquitetura-segura.md) seriam implementadas. Os testes foram definidos antes da solução e mantêm a rastreabilidade com os riscos R07 e R01.
+Esta etapa demonstra, por meio de pseudocódigo, como duas decisões da [Etapa 3](../etapa-3-arquitetura-segura/arquitetura-segura.md) seriam implementadas. Os testes foram definidos antes da solução e mantêm a rastreabilidade com os riscos R07 e R01.
 
 ## Escopo e premissas
 

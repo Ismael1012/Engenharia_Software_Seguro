@@ -1,6 +1,6 @@
 # Etapa 3 — Projeto de uma Arquitetura Segura
 
-Esta etapa deriva requisitos e decisões de arquitetura da [Etapa 2](Análise%20e%20priorização%20de%20riscos.md). Foram selecionados R09, R07 e R01: indisponibilidade da API, exposição de localização e uso indevido de conta.
+Esta etapa deriva requisitos e decisões de arquitetura da [Etapa 2](../etapa-2-riscos-nist/analise-priorizacao-riscos.md). Foram selecionados R09, R07 e R01: indisponibilidade da API, exposição de localização e uso indevido de conta.
 
 ## 1. Requisitos de segurança
 
@@ -33,9 +33,9 @@ flowchart LR
     B --> L
 ```
 
-O [arquivo-fonte Mermaid](../diagramas/etapa-3/arquitetura-segura.mmd) e a [imagem SVG exportada](../diagramas/etapa-3/arquitetura-segura.svg) estão versionados. A arquitetura explicita os limites de confiança entre Internet, borda protegida, serviços internos e dependências de dados. Ela posiciona limitação de requisições e monitoramento na borda; MFA e revogação de sessão na autenticação; autorização por função, vínculo com pedido e estado da operação no back-end; e logs centralizados para auditoria.
+O [arquivo-fonte Mermaid](diagramas/arquitetura-segura.mmd) e a [imagem SVG exportada](diagramas/arquitetura-segura.svg) estão versionados. A arquitetura explicita os limites de confiança entre Internet, borda protegida, serviços internos e dependências de dados. Ela posiciona limitação de requisições e monitoramento na borda; MFA e revogação de sessão na autenticação; autorização por função, vínculo com pedido e estado da operação no back-end; e logs centralizados para auditoria.
 
-![Arquitetura segura do Entrega Fácil](../diagramas/etapa-3/arquitetura-segura.svg)
+![Arquitetura segura do Entrega Fácil](diagramas/arquitetura-segura.svg)
 
 ## 4. Decisões de arquitetura
 
