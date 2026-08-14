@@ -53,7 +53,7 @@ A análise contextualizada das ameaças, seus ativos afetados, impactos e relaç
 
 ## 6. Casos de abuso
 
-Os cenários de uso malicioso e sua ligação com ameaças STRIDE estão em [Casos de abuso](Casos%20de%20Abuso.md). O [diagrama de casos de abuso](../diagramas/Casos%20de%20Abuso.png) representa os oito cenários iniciais; o arquivo-fonte também está disponível em [Casos%20de%20Abuso.drawio](../diagramas/Casos%20de%20Abuso.drawio).
+Os cenários de uso malicioso e sua ligação com ameaças STRIDE estão em [Casos de abuso](Casos%20de%20Abuso.md). O [diagrama de casos de abuso](../diagramas/Casos%20de%20Abuso.png) apresenta uma visão resumida dos cenários, enquanto o documento textual contém o conjunto completo CA01–CA12; o arquivo-fonte também está disponível em [Casos%20de%20Abuso.drawio](../diagramas/Casos%20de%20Abuso.drawio).
 
 ## Levantamento inicial com stakeholders
 
@@ -65,4 +65,4 @@ O levantamento de requisitos está organizado em [docs/levantamento-stakeholders
 - [Entregador](levantamento-stakeholders/entregador.md)
 - [Administrador](levantamento-stakeholders/administrador.md)
 
-As entrevistas dos perfis Cliente, Restaurante, Entregador e Administrador foram concluídas. Elas serão utilizadas para completar a descrição do sistema, os ativos, o fluxo e a análise STRIDE.
+As entrevistas dos perfis Cliente, Restaurante, Entregador e Administrador foram concluídas e serviram de base para a descrição do sistema, a identificação dos ativos, o fluxo e a análise STRIDE apresentados nesta etapa.

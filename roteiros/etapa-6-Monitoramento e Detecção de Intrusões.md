@@ -74,7 +74,7 @@ Abaixo estão apresentadas três regras diretas de detecção, correlacionadas a
 | **Risco observado** | **R01 — Uso indevido de conta** (Ataque de força bruta, credential stuffing ou tentativa de invasão de conta de usuário) |
 | **Fonte de dados** | Logs do serviço de autenticação (`auth_logs` — eventos de login, IP de origem, ID do usuário e status da resposta) |
 | **Condição de alerta** | Ocorrência de **mais de 10 tentativas malsucedidas de login (HTTP 401)** para a mesma conta de usuário ou provenientes do mesmo endereço IP em um intervalo de **2 minutos** |
-| **Resposta inicial** | Aplicar bloqueio temporário (*lockout*) de 15 minutos para a conta/IP atingido, revogar tokens de sessão ativos da conta, emitir alerta para a equipe de segurança e enviar notificação de segurança ao e-mail/push do titular |
+| **Resposta inicial** | Aplicar limitação progressiva ao IP e desafio adicional à conta, emitir alerta e notificar o titular. Revogar sessões somente se a correlação indicar comprometimento — por exemplo, login bem-sucedido anômalo, troca de credencial ou uso posterior suspeito — evitando que tentativas externas derrubem sessões legítimas. |
 
 ---
 
@@ -95,8 +95,8 @@ Abaixo estão apresentadas três regras diretas de detecção, correlacionadas a
 | :--- | :--- |
 | **Risco observado** | **R07 — Exposição de endereço, telefone ou localização** (Tentativa de consulta indevida a entregas de terceiros / exploração IDOR) |
 | **Fonte de dados** | Logs do serviço de autorização e auditoria da API (`audit_logs` — tentativas de consulta aos endpoints `/pedidos/{id}/entrega` e `/pedidos/{id}/localizacao`) |
-| **Condição de alerta** | Ocorrência de **5 ou mais respostas HTTP 403 (Acesso Negado)** vinculadas à mesma conta autenticada tentando acessar dados de pedidos sem vínculo em um intervalo de **10 minutos** |
-| **Resposta inicial** | Revogar imediatamente o token de sessão do usuário suspeito, exigir nova autenticação multifator para reativação da conta e sinalizar o perfil para análise urgente de possível raspagem automatizada de dados (*data scraping*) |
+| **Condição de alerta** | Ocorrência de **5 ou mais respostas HTTP 403** para **identificadores de pedidos distintos**, vinculadas à mesma conta autenticada, em um intervalo de **10 minutos**; elevar a confiança quando os IDs forem sequenciais, a frequência for automatizada ou a origem for anômala. |
+| **Resposta inicial** | Limitar temporariamente as consultas, preservar as evidências e solicitar reautenticação. Revogar a sessão e sinalizar o perfil para investigação urgente somente após correlação confirmar indícios de varredura, reduzindo falsos positivos causados por interface defeituosa ou uso legítimo. |
 
 ---
 

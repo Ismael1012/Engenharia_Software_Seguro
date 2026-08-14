@@ -1,10 +1,24 @@
 flowchart LR
-    U[Cliente, Restaurante, Entregador e Administrador] --> I[Aplicações mobile ou web]
-    I --> G[API Gateway e WAF\nLimite por rota e origem]
-    G --> A[Autenticação\nMFA e sessões revogáveis]
-    G --> B[Serviços de negócio\nAutorização por função, vínculo e estado]
-    B --> D[(Banco de dados)]
-    B --> E[Pagamentos, mapas e notificações]
-    G --> L[Logs centralizados e monitoramento]
+    subgraph Internet
+        U[Cliente, Restaurante, Entregador e Administrador] --> I[Aplicações mobile ou web]
+    end
+    subgraph Borda[Limite de confiança: borda protegida]
+        G[API Gateway e WAF\nLimite por rota e origem]
+    end
+    subgraph Interno[Limite de confiança: serviços internos]
+        A[Autenticação\nMFA e sessões revogáveis]
+        B[Serviços de negócio\nAutorização por função, vínculo e estado]
+        L[Logs centralizados e monitoramento]
+    end
+    subgraph Dados[Limite de confiança: dados e terceiros]
+        D[(Banco de dados)]
+        E[Pagamentos, mapas e notificações]
+    end
+    I --> G
+    G --> A
+    G --> B
+    G --> L
     A --> L
     B --> L
+    B --> D
+    B --> E

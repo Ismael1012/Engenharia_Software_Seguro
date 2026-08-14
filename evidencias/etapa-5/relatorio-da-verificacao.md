@@ -1,20 +1,44 @@
-# 5. Verificação de Vulnerabilidades
+# Etapa 5 — Verificação de Vulnerabilidades
 
-### 1. Contexto do Teste e Ambiente
+## 1. Contexto, autorização e ambiente
 
-- **Sistema testado:** [Juice Shop](https://github.com/juice-shop/juice-shop)
-- **Ferramenta utilizada:** [ZAP](https://www.zaproxy.org/)
-- **Configuração básica do teste:** Execução em modo padrão, varredura automatizada. [Tela das configurações usadas](https://raw.githubusercontent.com/Ismael1012/Engenharia_Software_Seguro/refs/heads/main/evidencias/etapa-5/configuracoes-usadas.png)
+- **Sistema testado:** [OWASP Juice Shop](https://github.com/juice-shop/juice-shop), aplicação deliberadamente vulnerável para treinamento.
+- **Endereço do ambiente local:** `http://localhost:3000/#/`.
+- **Ferramenta:** OWASP ZAP 2.17.0.
+- **Configuração:** modo padrão, política padrão, spider tradicional e spider moderno, seguidos de varredura automatizada.
+- **Escopo ético:** somente a instância local, executada pelo grupo; nenhum sistema de terceiros foi testado.
 
----
+Evidências da sessão:
 
-| ID | Alerta | Evidência | Possível Impacto | Relação com CWE | Correção proposta |
-| --- | --- | --- | --- | --- | --- |
-| A01 | Injeção SQL | ```/rest/products/search?q=``` | Um atacante pode burlar sistemas de autenticação, ler dados confidenciais de outros usuários (vazamento de dados), modificar ou excluir registros no banco (destruição de dados) e, dependendo do SGBD, executar comandos no sistema operacional do servidor. | CWE 89 | Uso mandatório de consultas parametrizadas (Prepared Statements), proibir a concatenação de strings para montar queries [1]; utilizar o ORM de forma segura através de seus métodos nativos que automatizam a parametrização: ```User.findOne({ where: { email, password } });``` em queries nativas, use marcadores de posição (```? ou :param```). |
-| A02 | Configuração Incorreta Entre Domínios | ```Access-Control-Allow-Origin: *``` | Vazamento de dados e roubo de seção, se um usuário autenticado no juice shop visitar um site malicioso, este site pode rodar um script em segundo plano que faz requisições ao juice shop em nome do usuário. O script conseguirá ler dados privados, históricos de compras e tokens, pois o navegador terá permissão para entregar a resposta ao domínio malicioso. | CWE 264 | Restrição estrita de origens permitidas, removendo o uso do caractere curinga (*) em ambientes produtivos; nunca retorne dinamicamente o cabeçalho Origin recebido na requisição sem antes validá-lo contra uma lista de permissões (allowlist). |
-| A03 | Content Security Policy (CSP) Header Not Set | Cabeçalho ```Content-Security-Policy``` está completamente ausente nas respostas HTTP enviadas pelo servidor Express da aplicação. | Sem uma política restritiva, se um atacante conseguir injetar um script na página , o navegador irá executá-lo cegamente. Isso permite o roubo de tokens de sessão , filtração de dados sensíveis e desfiguração da interface. | CWE 693 | Implementação de uma política de CSP restritiva, definindo diretivas estritas que proíbam a execução de scripts inline sem hashes ou nonces: ```Content-Security-Policy: default-src 'self'; script-src 'self'```. |
-| A04 | Missing Anti-clickjacking Header | A resposta HTTP do servidor não contém os cabeçalhos ```X-Frame-Options``` ou ```Content-Security-Policy```. | Um atacante pode embutir o juice shop de forma transparente em uma página maliciosa. Ao induzir o usuário a clicar em elementos visuais falsos, o clique é repassado para a aplicação oculta, forçando a execução de ações como compras ou exclusão de conta. | CWE 1021 | Restrição de enquadramento no servidor configurando o cabeçalho moderno de CSP para restringir as origens permitidas: ```Content-Security-Policy: frame-ancestors 'self'```; adicionar suporte a navegadores legados utilizando o middleware ```helmet``` para injetar a diretiva protetiva adicional: ```app.use(helmet.frameguard({ action: 'sameorigin' }));```. |
-| A05 | Session ID in URL Rewrite | ```sid=pICtELWHatSVi5gkAAAA``` | As URLs contendo o token de sessão ficam registradas no histórico do navegador, em logs de servidores web, proxies e no cabeçalho ```Referer``` ao clicar em links externos. Se um invasor obtiver a URL, ele poderá clonar a sessão e se passar pelo usuário legítimo. | CWE 598 | Migração para transporte seguro e desativação de polling forçando o Socket.io a iniciar a conexão diretamente via WebSockets, desativando o mecanismo de HTTP Polling no cliente: ```const socket = io({ transports: ['websocket'] });``` se for preciso manter o transporte HTTP, configure a aplicação para transmitir tokens sensíveis estritamente via cabeçalhos HTTP customizados ou cookies seguros (```HttpOnly, Secure, SameSite```). |
-| A06 | Divulgação de Data e Hora - Unix | O valor numérico mapeia diretamente para uma data/hora exata do sistema. | Permite que um atacante determine o fuso horário, a hora exata do servidor e padrões de atividade do sistema. Em cenários críticos, essa informação ajuda a sincronizar ataques de força bruta, prever tokens pseudoaleatórios gerados com base no tempo atual ou explorar falhas de sincronização lógico-temporal. | CWE 497 | Abstração de dados avaliando se o carimbo exposto é estritamente necessário para o funcionamento da regra de negócio da API; restringir dados de depuração (logs ou parâmetros internos) para que não retornem ao cliente final. | 
-| A07 | Private IP Disclosure | ```"origin_ip: 192.168.1.50:3000"``` | Embora IPs privados não sejam acessíveis diretamente pela internet, essa informação revela a topologia da rede, faixas de IPs utilizadas e a presença de proxies, contêineres (Docker) ou balanceadores de carga. Esses dados facilitam o planejamento de ataques de movimentação lateral ou falsificação de requisições do lado do servidor (SSRF), essas informações podem ser úteis para ataques subsequentes direcionados a sistemas internos. | CWE 497 | Um tratamento genérico pode ser alterar as respostas para mensagens genéricas: ```"Ocorreu um erro interno no servidor."```; remover os cabeçalhos de proxy antes que a resposta seja entregue ao navegador se eles contiverem dados da rede interna. |
-| A08 | X-Content-Type-Options Header Missing | O cabeçalho ```X-Content-Type-Options``` está ausente nas respostas HTTP enviadas pelo servidor Express da aplicação. | Sem esse cabeçalho, se um atacante conseguir fazer o upload de um arquivo de texto ou imagem contendo código JavaScript oculto, o navegador pode tentar adivinhar o tipo de conteúdo, tratá-lo como um script executável e rodá-lo no contexto do site, resultando em XSS. | CWE 693 | Adicionando o cabeçalho diretamente na resposta HTTP do servidor: ```X-Content-Type-Options: nosniff``` ou instalar e configurar o middleware helmet para injetar o cabeçalho automaticamente: ```app.use(helmet.noSniff());```. |
+- [Aplicação executada localmente](sistema-explorado.png);
+- [configuração e conclusão da varredura](configuracoes-usadas.png);
+- [lista principal de alertas](alertas-gerados.png);
+- [execução auxiliar que identificou SQL Injection](teste-auxiliar.png).
+
+A execução principal encontrou oito tipos de alerta. Uma execução auxiliar, mantida no mesmo ambiente autorizado, ampliou a navegação e produziu também o alerta de SQL Injection. Para atender ao escopo mínimo com maior profundidade, foram selecionados três achados representativos.
+
+## 2. Achados selecionados
+
+| ID | Alerta e evidência | Possível impacto | Relação com CWE/OWASP | Correção proposta |
+| --- | --- | --- | --- | --- |
+| A01 | **SQL Injection** no endpoint de pesquisa `/rest/products/search?q=`. O alerta aparece na [execução auxiliar](teste-auxiliar.png). | Uma entrada incorporada diretamente à consulta pode alterar sua estrutura, permitindo leitura ou modificação de registros conforme as permissões da conta do banco. | [CWE-89](https://cwe.mitre.org/data/definitions/89.html) e OWASP Top 10 — Injection. | Usar consultas parametrizadas em todas as consultas; evitar concatenação de entrada; executar a aplicação com usuário de banco de privilégio mínimo; validar com teste automatizado contendo metacaracteres de SQL. |
+| A02 | **CORS configurado com origem curinga**, indicado como “Configuração Incorreta Entre Domínios” na [lista principal](alertas-gerados.png), com resposta contendo `Access-Control-Allow-Origin: *`. | Permite que qualquer origem leia respostas públicas habilitadas para CORS. A exposição de dados autenticados depende também do uso de credenciais, cookies e outros cabeçalhos; por isso o impacto deve ser confirmado por endpoint. | [CWE-942](https://cwe.mitre.org/data/definitions/942.html) — Permissive Cross-domain Policy. | Substituir `*` por allowlist de origens necessárias; não refletir `Origin` sem validação; permitir credenciais somente quando indispensável; testar origens autorizada, não autorizada e `null`. |
+| A03 | **Content-Security-Policy ausente**, registrado na [lista principal](alertas-gerados.png). | A ausência de CSP não cria XSS isoladamente, mas remove uma camada de contenção caso outra falha permita injetar HTML ou JavaScript. | [CWE-693](https://cwe.mitre.org/data/definitions/693.html) — Protection Mechanism Failure; OWASP Content Security Policy Cheat Sheet. | Implantar inicialmente `Content-Security-Policy-Report-Only`, ajustar fontes necessárias e depois aplicar política como `default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'`, usando nonces ou hashes quando necessários. |
+
+## 3. Verificação das correções
+
+| Achado | Evidência esperada após correção |
+| --- | --- |
+| A01 | Testes com entrada maliciosa não alteram a consulta; revisão confirma parametrização; nova varredura não reproduz o alerta. |
+| A02 | Origem autorizada recebe o cabeçalho esperado; origem não autorizada não consegue ler a resposta; endpoints autenticados são testados separadamente. |
+| A03 | O cabeçalho CSP aparece nas respostas, violações são acompanhadas no modo de relatório e a aplicação continua funcional após ativação da política. |
+
+## 4. Relação com o projeto Entrega Fácil
+
+Embora o teste tenha sido executado no Juice Shop, os resultados orientam o Entrega Fácil: A01 reforça validação e acesso seguro a dados; A02 protege APIs consumidas pelos aplicativos; e A03 reduz o impacto de eventual injeção de conteúdo na interface. Esses controles complementam os riscos R03, R07 e R08 e devem entrar nas verificações dinâmicas do pipeline da Etapa 7.
+
+## 5. Limitações e possíveis falsos positivos
+
+O ZAP observa respostas e comportamentos acessíveis durante a navegação realizada; ele não comprova sozinho que uma vulnerabilidade é explorável nem cobre todos os fluxos autenticados, regras de negócio ou estados da aplicação. Alertas de cabeçalhos indicam ausência de defesa em profundidade, mas sua severidade depende do conteúdo e do endpoint. O alerta de CORS exige validação manual por origem e por uso de credenciais. A SQL Injection deve ser confirmada de forma controlada por detalhes do alerta, revisão de código ou teste seguro, sem extração ou alteração indevida de dados.
+
+Os demais alertas da sessão foram preservados nas capturas, mas não foram aprofundados por serem duplicados, informativos ou de menor prioridade para o limite desta entrega. Nenhum achado foi considerado corrigido: as correções são propostas e só poderão ser confirmadas após implementação e nova verificação.

@@ -47,29 +47,44 @@ Repositório do grupo: [github.com/Ismael1012/Engenharia_Software_Seguro](https:
 
 ### Etapa 2 — Análise, priorização e tratamento de riscos com NIST CSF 2.0
 
-[Acessar documento da Etapa 2](docs/Análise%20e%20priorização%20de%20riscos.md)
-
-O documento contém critérios de probabilidade e impacto, registro de riscos R01–R12, justificativas, priorização, estratégias de tratamento, mapeamento para as funções Govern, Identify, Protect, Detect, Respond e Recover, controles propostos, responsáveis, evidências, ordem de implementação e risco residual estimado.
-
-### Próximas etapas
-
-| Etapa | Entregável previsto |
+| Artefato | Conteúdo |
 | --- | --- |
-| 3 — Arquitetura segura | 3 requisitos de segurança, 3 mapeamentos para CWE/OWASP, diagrama de arquitetura e 3 decisões justificadas. |
-| 4 — Código seguro | 2 práticas de código seguro, cada uma com testes definidos antes da solução, implementação ou pseudocódigo e referência OWASP. |
-| 5 — Verificação | Uma sessão autorizada de verificação, evidências e análise de até 3 achados com correções propostas. |
-| 6 — Detecção de intrusões | Roteiro com eventos registrados, 3 regras de detecção e respostas iniciais. |
-| 7 — DevSecOps e vídeo final | Pipeline proposto, critérios de bloqueio, roteiro e vídeo de apresentação. |
+| [Análise e priorização de riscos](docs/Análise%20e%20priorização%20de%20riscos.md) | Critérios, registro R01–R12, justificativas e ordem de prioridade. |
+| [Tratamento de riscos](docs/Tratamento%20de%20riscos.md) | Estratégias, NIST CSF 2.0, controles, responsáveis, evidências, implementação e risco residual. |
+
+### Etapa 3 — Projeto de uma arquitetura segura
+
+[Acessar requisitos, vulnerabilidades catalogadas, diagrama e decisões de arquitetura](docs/Arquitetura-segura.md).
+
+### Etapa 4 — Código seguro e testes de segurança
+
+[Acessar as duas práticas, os testes definidos antes da solução e o pseudocódigo](docs/Codigo-seguro.md).
+
+### Etapa 5 — Verificação de vulnerabilidades
+
+[Acessar o relatório da verificação autorizada no OWASP Juice Shop](evidencias/etapa-5/relatorio-da-verificacao.md).
+
+### Etapa 6 — Monitoramento e detecção de intrusões
+
+[Acessar o roteiro de eventos, regras de detecção e resposta a alertas](roteiros/etapa-6-Monitoramento%20e%20Detecção%20de%20Intrusões.md).
+
+### Etapa 7 — DevSecOps e vídeo final
+
+[Acessar o pipeline, os critérios de bloqueio e o roteiro do vídeo final](roteiros/etapa-7-devsecops-e-video-final.md).
+
+> **Vídeo final:** inserir aqui o endereço compartilhado do vídeo após a publicação, verificando o acesso pelo professor.
 
 ## Organização do repositório
 
 ```text
 .
 ├── README.md
-├── docs/                     # Documentos das etapas e entrevistas
+├── docs/                         # Documentos das etapas 1 a 4 e entrevistas
 │   └── levantamento-stakeholders/
-└── diagramas/                # Imagens e arquivos-fonte Draw.io
-└── evidencias/etapa5         # Documentos referentes a verificação de vulnerabilidades
-└── roteiros/                 # Documentos referentes aos roteiros
+├── diagramas/                    # Imagens e arquivos-fonte Draw.io/Mermaid
+│   └── etapa-3/
+├── evidencias/
+│   └── etapa-5/                  # Relatório e capturas da verificação
+└── roteiros/                     # Etapas 6 e 7
 
 ```

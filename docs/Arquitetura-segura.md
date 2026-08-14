@@ -33,15 +33,17 @@ flowchart LR
     B --> L
 ```
 
-O [arquivo-fonte Mermaid](../diagramas/etapa-3/arquitetura-segura.mmd) está versionado. A arquitetura posiciona limitação de requisições e monitoramento na borda; MFA e revogação de sessão na autenticação; autorização por função, vínculo com pedido e estado da operação no back-end; e logs centralizados para auditoria.
+O [arquivo-fonte Mermaid](../diagramas/etapa-3/arquitetura-segura.mmd) e a [imagem SVG exportada](../diagramas/etapa-3/arquitetura-segura.svg) estão versionados. A arquitetura explicita os limites de confiança entre Internet, borda protegida, serviços internos e dependências de dados. Ela posiciona limitação de requisições e monitoramento na borda; MFA e revogação de sessão na autenticação; autorização por função, vínculo com pedido e estado da operação no back-end; e logs centralizados para auditoria.
+
+![Arquitetura segura do Entrega Fácil](../diagramas/etapa-3/arquitetura-segura.svg)
 
 ## 4. Decisões de arquitetura
 
-| ID | Problema ou risco tratado | Decisão tomada | Componente afetado | Resultado esperado |
-| --- | --- | --- | --- | --- |
-| DA01 | R09 — Sobrecarga da API | Posicionar API gateway/WAF antes do back-end, com limite por rota/origem, alertas de latência e capacidade. | Borda da API e infraestrutura. | Tráfego abusivo é limitado antes de consumir os serviços de pedido. |
-| DA02 | R07 — Exposição de dados de entrega | Centralizar no serviço de pedidos a autorização por função, vínculo com pedido ativo e estado da entrega; expirar localização após conclusão. | API de pedidos/entrega e banco de dados. | Apenas participantes necessários recebem dados pessoais durante o período necessário. |
-| DA03 | R01 — Uso indevido de conta | Usar autenticação centralizada com MFA administrativo, reautenticação em ações sensíveis, expiração/revogação de sessão e logs de acesso. | Serviço de autenticação, contas e painel administrativo. | Senha ou sessão comprometida isoladamente não permite ação crítica; eventos podem ser investigados. |
+| ID | Problema ou risco tratado | Decisão tomada | Motivo/justificativa | Componente afetado | Resultado esperado |
+| --- | --- | --- | --- | --- | --- |
+| DA01 | R09 — Sobrecarga da API | Posicionar API gateway/WAF antes do back-end, com limite por rota/origem, alertas de latência e capacidade. | A contenção na borda reduz o consumo dos serviços internos antes que o tráfego abusivo alcance pedidos e pagamentos. | Borda da API e infraestrutura. | Tráfego abusivo é limitado antes de consumir os serviços de pedido. |
+| DA02 | R07 — Exposição de dados de entrega | Centralizar no serviço de pedidos a autorização por função, vínculo com pedido ativo e estado da entrega; expirar localização após conclusão. | Ocultar campos na interface não impede chamadas diretas; a decisão deve ser aplicada no servidor e considerar o período de necessidade do dado. | API de pedidos/entrega e banco de dados. | Apenas participantes necessários recebem dados pessoais durante o período necessário. |
+| DA03 | R01 — Uso indevido de conta | Usar autenticação centralizada com MFA administrativo, reautenticação em ações sensíveis, expiração/revogação de sessão e logs de acesso. | Uma senha ou sessão roubada não deve ser suficiente para executar ações de alto impacto, e os eventos precisam ser rastreáveis. | Serviço de autenticação, contas e painel administrativo. | Senha ou sessão comprometida isoladamente não permite ação crítica; eventos podem ser investigados. |
 
 ## 5. Próxima conexão
 

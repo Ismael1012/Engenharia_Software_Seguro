@@ -70,7 +70,7 @@ Os casos abaixo descrevem cenários de uso malicioso. A relação de cada cenár
 
 **Impacto esperado:** fraude financeira, perda de credibilidade e reclamações de clientes.
 
-**Categorias STRIDE relacionadas:** Tampering e Repudiation.
+**Categorias STRIDE relacionadas:** Tampering.
 
 ---
 
@@ -262,7 +262,7 @@ Os casos abaixo descrevem cenários de uso malicioso. A relação de cada cenár
 
 **Impacto esperado:** fraude financeira, exposição de dados pessoais, roubo de pedidos e perda de confiança na plataforma.
 
-**Categorias STRIDE relacionadas:** Spoofing, Tampering e Elevation of Privilege.
+**Categorias STRIDE relacionadas:** Spoofing e Elevation of Privilege.
 
 ---
 
@@ -288,7 +288,7 @@ Os casos abaixo descrevem cenários de uso malicioso. A relação de cada cenár
 
 **Impacto esperado:** prejuízo financeiro para o restaurante ou plataforma, aumento de fraudes e conflitos com entregadores.
 
-**Categorias STRIDE relacionadas:** Repudiation e Tampering.
+**Categorias STRIDE relacionadas:** Repudiation.
 
 ## 7. Considerações finais
 

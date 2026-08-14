@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura segura do Entrega Fácil</title>
+  <desc id="desc">Fluxo dos usuários pela aplicação e borda protegida até autenticação, serviços internos, banco, integrações e monitoramento.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker>
+    <style>.zone{fill:#f8fafc;stroke:#94a3b8;stroke-width:2;stroke-dasharray:7 5}.box{fill:#e0f2fe;stroke:#0369a1;stroke-width:2}.secure{fill:#dcfce7;stroke:#15803d;stroke-width:2}.data{fill:#fef3c7;stroke:#b45309;stroke-width:2}.t{font:16px Arial,sans-serif;fill:#0f172a}.h{font:bold 18px Arial,sans-serif;fill:#334155}.line{stroke:#334155;stroke-width:2;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect class="zone" x="20" y="30" width="300" height="450" rx="12"/><text class="h" x="40" y="62">Internet</text>
+  <rect class="zone" x="350" y="30" width="250" height="450" rx="12"/><text class="h" x="370" y="62">Borda protegida</text>
+  <rect class="zone" x="630" y="30" width="430" height="450" rx="12"/><text class="h" x="650" y="62">Serviços internos</text>
+  <rect class="zone" x="1090" y="30" width="290" height="450" rx="12"/><text class="h" x="1110" y="62">Dados e terceiros</text>
+  <rect class="box" x="60" y="120" width="220" height="90" rx="10"/><text class="t" text-anchor="middle" x="170" y="153"><tspan x="170">Cliente, Restaurante,</tspan><tspan x="170" dy="23">Entregador e Administrador</tspan></text>
+  <rect class="box" x="60" y="290" width="220" height="75" rx="10"/><text class="t" text-anchor="middle" x="170" y="320"><tspan x="170">Aplicações</tspan><tspan x="170" dy="23">mobile ou web</tspan></text>
+  <rect class="secure" x="385" y="220" width="180" height="100" rx="10"/><text class="t" text-anchor="middle" x="475" y="252"><tspan x="475">API Gateway e WAF</tspan><tspan x="475" dy="23">limite por rota</tspan><tspan x="475" dy="23">e origem</tspan></text>
+  <rect class="secure" x="670" y="100" width="165" height="85" rx="10"/><text class="t" text-anchor="middle" x="752" y="132"><tspan x="752">Autenticação</tspan><tspan x="752" dy="23">MFA e sessões</tspan></text>
+  <rect class="secure" x="860" y="215" width="165" height="110" rx="10"/><text class="t" text-anchor="middle" x="942" y="245"><tspan x="942">Serviços de negócio</tspan><tspan x="942" dy="23">autorização por função,</tspan><tspan x="942" dy="23">vínculo e estado</tspan></text>
+  <rect class="secure" x="670" y="360" width="355" height="70" rx="10"/><text class="t" text-anchor="middle" x="847" y="402">Logs centralizados e monitoramento</text>
+  <rect class="data" x="1130" y="135" width="210" height="70" rx="10"/><text class="t" text-anchor="middle" x="1235" y="177">Banco de dados</text>
+  <rect class="data" x="1130" y="300" width="210" height="90" rx="10"/><text class="t" text-anchor="middle" x="1235" y="333"><tspan x="1235">Pagamentos, mapas</tspan><tspan x="1235" dy="23">e notificações</tspan></text>
+  <path class="line" d="M170 210 L170 290"/><path class="line" d="M280 327 L385 285"/><path class="line" d="M565 250 L670 160"/><path class="line" d="M565 280 L860 270"/><path class="line" d="M565 300 L700 360"/><path class="line" d="M752 185 L800 360"/><path class="line" d="M942 325 L900 360"/><path class="line" d="M1025 245 L1130 185"/><path class="line" d="M1025 295 L1130 335"/>
+</svg>

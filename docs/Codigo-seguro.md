@@ -1,6 +1,6 @@
 # Etapa 4 — Código Seguro e Testes de Segurança
 
-Esta etapa demonstra, por meio de pseudocódigo, como duas decisões da [Etapa 3](etapa-3-arquitetura-segura.md) seriam implementadas. Os testes foram definidos antes da solução e mantêm a rastreabilidade com os riscos R07 e R01.
+Esta etapa demonstra, por meio de pseudocódigo, como duas decisões da [Etapa 3](Arquitetura-segura.md) seriam implementadas. Os testes foram definidos antes da solução e mantêm a rastreabilidade com os riscos R07 e R01.
 
 ## Escopo e premissas
 
@@ -94,9 +94,12 @@ função confirmarReembolso(usuario, reembolsoId, comprovanteMfa):
     se reembolso não existir:
         retornar resposta 404
 
-    transacao.executarAtomica(reembolso.confirmar)
-    autenticacao.consumirConfirmacao(comprovanteMfa)
-    auditoria.registrar(usuario.id, "reembolso_confirmado", reembolsoId)
+    transacao.executarAtomica:
+        se reembolso.jaConfirmado ou comprovanteMfa.jaConsumido:
+            abortar transacao e retornar resposta 409 genérica
+        autenticacao.consumirConfirmacao(comprovanteMfa)
+        reembolso.confirmarComChaveIdempotente(reembolsoId)
+        auditoria.registrar(usuario.id, "reembolso_confirmado", reembolsoId)
     retornar resposta 200
 ~~~
 
@@ -107,6 +110,7 @@ função confirmarReembolso(usuario, reembolsoId, comprovanteMfa):
 - Reembolso não pode ser confirmado por perfil diferente de administrador autorizado.
 - A confirmação MFA possui validade máxima de cinco minutos, uso único e vínculo com a ação e o identificador do reembolso.
 - Uma tentativa sem confirmação, expirada ou reutilizada não altera o estado financeiro.
+- O consumo da confirmação MFA e a mudança do reembolso ocorrem atomicamente; uma chave idempotente impede processamento duplicado em requisições concorrentes.
 - Respostas e logs não expõem código MFA, token de sessão, valores financeiros completos ou detalhes internos do controle.
 
 **Referência OWASP:** [Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html), que orienta autenticação multifator, controles contra abuso de login e reautenticação para operações sensíveis.
