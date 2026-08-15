@@ -1,151 +1,137 @@
-# Etapa 7 — DevSecOps e Vídeo Final
+# Etapa 7 — Roteiro consolidado do vídeo final
 
-## 1. Objetivo
+Este arquivo reúne, sem resumir as falas já elaboradas, os roteiros das Etapas 1 a 7 e a apresentação do pipeline DevSecOps. Os arquivos separados podem ser mantidos como apoio individual para os apresentadores.
 
-Esta etapa integra as decisões anteriores do projeto para demonstrar como a segurança pode acompanhar o ciclo de desenvolvimento do sistema **Entrega Fácil**. O objetivo não é implementar um pipeline completo em produção, mas apresentar uma visão coerente de como os riscos, requisitos, arquitetura, código seguro, testes e monitoramento devem funcionar em conjunto.
+## Etapas 1 e 2 — Ismael
 
-A proposta abaixo mantém a mesma arquitetura conceitual do projeto e conecta todas as etapas anteriores:
+### Introdução
 
-- Etapa 1: ameaças STRIDE e casos de abuso;
-- Etapa 2: riscos e priorização com NIST CSF;
-- Etapa 3: arquitetura segura;
-- Etapa 4: práticas de código seguro e testes;
-- Etapa 5: verificação de vulnerabilidades;
-- Etapa 6: monitoramento e detecção.
+“Olá, eu sou o Ismael e juntamente com o Davi, Ezequiel e o Francisco, vamos apresentar o trabalho que foi desenvolvido ao longo dessa disciplina. Então eu vou explicar brevemente sobre as primeiras duas etapas do trabalho, onde o nosso objetivo foi analisar a segurança de um sistema antes de sua implementação, identificando possíveis ameaças, comportamentos maliciosos e impactos.”
 
----
+### Slide 1 — Sistema escolhido
 
-## 2. Pipeline DevSecOps proposto
+“Para o nosso trabalho, optamos por escolher um aplicativo de delivery, pois ele envolve diferentes usuários, informações e operações que precisam ser consideradas na construção e, principalmente, na segurança do software.”
 
-O pipeline abaixo representa uma implementação simples, porém realista, para o Entrega Fácil.
+### Slide 2 — Características do sistema
 
-| Momento | Atividade de segurança | Evidência produzida | Condição para continuar |
-| --- | --- | --- | --- |
-| Planejamento | Análise de ameaças STRIDE, riscos e priorização com NIST | Tabela de ameaças e riscos | Riscos críticos e altos identificados e aprovados |
-| Requisitos e arquitetura | Definição de requisitos e decisões de arquitetura | Requisitos RS01–RS03 e decisões DA01–DA03 | Requisitos verificáveis e arquitetura coerente |
-| Implementação | Práticas seguras e padrões de desenvolvimento | Pseudocódigo, revisão de código e controles | Código compatível com políticas de segurança |
-| Testes automatizados | Testes unitários, de integração e testes de segurança | Casos de teste e relatórios | Testes de autorização e autenticação aprovados |
-| Análise de código e dependências | Leitura de código, análise estática e verificação de dependências | Relatórios de vulnerabilidades e bibliotecas | Nenhuma dependência crítica não tratada |
-| Verificação dinâmica | Varredura com ZAP ou ferramenta equivalente | Relatório de alertas | Achados críticos corrigidos ou formalmente tratados e aprovados pelo responsável pelo risco |
-| Implantação | Deploy controlado, ambiente de homologação e validação | Checklist de implantação | Sem segredo exposto e sem falha crítica de acesso |
-| Monitoramento e resposta | Logs, alertas, detecção e resposta a incidentes | Regras de detecção e registros de auditoria | Incidentes classificados e tratados |
+“Nesse sistema, temos diferentes níveis de acesso e uma comunicação entre os usuários. Também são trabalhados dados pessoais e de localização, além de informações relacionadas aos pedidos e pagamentos. Por isso, ele apresenta vários pontos que podem ser explorados de maneira indevida e que precisam ser considerados na análise de segurança.”
 
-### Condições que impediriam a continuidade do pipeline
+### Slide 3 — Diagrama de casos de uso
 
-As seguintes condições devem bloquear o avanço do pipeline:
+“A partir dessas características, primeiro identificamos o funcionamento normal do sistema por meio do diagrama de casos de uso. Nele, temos quatro atores principais: cliente, restaurante, entregador e administrador, cada um relacionado às funcionalidades que pode executar.”
 
-1. Teste de segurança reprovado por uma falha crítica, como autorização sem validação, autenticação fraca ou exposição de dados sensíveis.
-2. Vulnerabilidade crítica não analisada, com risco de exploração em produção.
-3. Segredo encontrado no repositório, como chave de API, token, senha ou credencial em arquivo versionado.
-4. Dependência conhecida como vulnerável, sem correção ou compensação explícita.
-5. Falha no controle de acesso para funções administrativas ou dados sensíveis.
-6. Ausência de evidência de verificação ou de logs relevantes para operação segura.
+“Por exemplo, o cliente pode realizar pedidos e acompanhar sua entrega; o restaurante pode gerenciar seus produtos e pedidos; o entregador pode atualizar a entrega; e o administrador possui funções de gerenciamento do sistema.”
 
-### Representação simples do pipeline
+“Também mantivemos cada caso de uso representando uma única função, evitando juntar operações diferentes em um mesmo caso.”
 
-```mermaid
-flowchart LR
-    A[Planejamento e ameaças] --> B[Requisitos e arquitetura]
-    B --> C[Implementação segura]
-    C --> D[Testes automatizados]
-    D --> E[Análise de código e dependências]
-    E --> F[Verificação dinâmica]
-    F --> G[Implantação]
-    G --> H[Monitoramento e resposta]
-    H --> I[Revisão e melhoria contínua]
+### Slide 4 — Diagrama de casos de abuso
 
-    E -. bloqueia .-> G
-    F -. bloqueia .-> G
-    C -. bloqueia .-> D
-```
+“Depois de identificar o funcionamento normal, analisamos como essas mesmas funcionalidades poderiam ser utilizadas de forma maliciosa.”
 
----
+“Inicialmente, identificamos 18 possíveis casos de abuso. Porém, para manter o diagrama mais objetivo, selecionamos 12 casos mais relevantes, priorizando aqueles que poderiam causar maior impacto à segurança do sistema.”
 
-## 3. Relação entre as etapas e o pipeline
+“Também buscamos manter uma representação dos diferentes tipos de atores mal-intencionados, como atacante externo, cliente, restaurante, entregador e fraudador.”
 
-O DevSecOps proposto deve reforçar a continuidade do trabalho ao longo do ciclo:
+“Por exemplo, um atacante externo pode tentar invadir uma conta, um cliente mal-intencionado pode manipular o valor de um pedido, e um entregador pode confirmar uma entrega que não foi realizada.”
 
-- A análise de ameaças da Etapa 1 gera os requisitos e os riscos da Etapa 2.
-- A arquitetura da Etapa 3 transforma esses riscos em decisões concretas.
-- A implementação segura da Etapa 4 define como as decisões são convertidas em práticas operacionais.
-- A verificação da Etapa 5 valida se o sistema ainda apresenta falhas relevantes.
-- O monitoramento da Etapa 6 mostra como responder a atividades suspeitas em operação.
-- A Etapa 7 reúne tudo isso em um fluxo contínuo de desenvolvimento, validação e operação.
+“Os casos selecionados foram então relacionados às funcionalidades correspondentes e utilizados como base para a análise de ameaças com STRIDE.”
 
-Esse encadeamento é importante porque segurança não é um evento isolado; ela precisa ser incorporada em todo o ciclo de vida do software.
+### Slide 5 — Etapa 2: análise e tratamento dos riscos
 
----
+“Na segunda etapa, transformamos as ameaças e os casos de abuso em riscos avaliáveis. Para cada risco, atribuímos valores de probabilidade e impacto de um a quatro e calculamos a pontuação pela multiplicação desses dois valores. Os resultados foram classificados como baixos, médios, altos ou críticos.”
 
-## 4. Roteiro do vídeo final
+“Os principais riscos foram a indisponibilidade da API, representada pelo R09; a exposição de endereço, telefone ou localização, no R07; o uso indevido de contas, no R01; e o cadastro falso de restaurantes ou entregadores, no R02. A prioridade considerou não apenas a pontuação, mas também o número de usuários afetados, os possíveis danos financeiros e de privacidade e as dependências entre os controles.”
 
-O vídeo final deve ter entre 5 e 8 minutos e apresentar a evolução do projeto de forma clara e objetiva.
+“Depois, relacionamos os riscos às funções Govern, Identify, Protect, Detect, Respond e Recover do NIST CSF 2.0. Para cada risco definimos uma estratégia de tratamento, controles concretos, responsáveis e evidências de verificação. Também estimamos o risco residual, deixando claro que ele só poderá ser confirmado depois da implementação e dos testes.”
 
-### Estrutura sugerida
+## Etapas 3 e 4 — Davi
 
-| Tempo | Conteúdo | Objetivo |
-| --- | --- | --- |
-| 00:00–00:45 | Abertura e apresentação do sistema | Apresentar o Entrega Fácil e o que ele faz |
-| 00:45–01:45 | Principais ameaças e casos de abuso | Mostrar os problemas de segurança identificados |
-| 01:45–02:45 | Riscos prioritários e critérios da Etapa 2 | Explicar os riscos mais graves e a priorização |
-| 02:45–03:30 | Arquitetura segura e requisitos | Mostrar como a solução foi organizada |
-| 03:30–04:30 | Práticas de código seguro e testes | Explicar as duas práticas implementadas conceitualmente |
-| 04:30–05:15 | Resultado da verificação | Apresentar os alertas e correções propostas |
-| 05:15–06:00 | Monitoramento e detecção | Explicar as regras de alerta e resposta |
-| 06:00–06:45 | Pipeline DevSecOps | Mostrar a visão contínua da segurança |
-| 06:45–07:30 | Aprendizados e fechamento | Destacar o que foi aprendido e as lições da disciplina |
+“Nas Etapas 3 e 4, transformamos os riscos anteriores em decisões técnicas verificáveis. Primeiro projetamos a arquitetura segura do Entrega Fácil. Depois demonstramos, com testes e pseudocódigo, como duas decisões seriam implementadas, mantendo a ligação entre risco, requisito e prática de código.”
 
-### Roteiro em formato de fala
+### Etapa 3: requisitos e vulnerabilidades
 
-#### 1. Introdução
-“Este projeto analisou a segurança de um sistema de delivery chamado Entrega Fácil. O objetivo foi identificar ameaças, transformar esses riscos em ações, propor arquitetura segura e demonstrar como cada etapa da disciplina contribui para uma operação mais segura.”
+“Selecionamos três riscos prioritários. Para o R09, de indisponibilidade da API, o requisito RS01 limita requisições por origem e rota, responde com HTTP 429 quando o limite é excedido e gera alertas.
 
-#### 2. Sistema e ameaças
-“O sistema conecta clientes, restaurantes, entregadores e administradores. Ele trata pedidos, pagamentos, localização, mensagens e dados administrativos. Por isso, os principais problemas de segurança são acesso indevido, exposição de localização, manipulação de pedidos e indisponibilidade da API.”
+Para o R07, de exposição de dados de entrega, o RS02 permite endereço, telefone e localização apenas a perfis autorizados e vinculados a um pedido ativo. Após a entrega, a localização deixa de ser disponibilizada.
 
-#### 3. Riscos prioritários
-“Entre os riscos, destacamos a indisponibilidade da API, a exposição de dados sensíveis e o uso indevido de conta. A partir da priorização, decidimos focar em controles de autorização, autenticação reforçada, monitoramento e logs confiáveis.”
+Para o R01, de uso indevido de conta, o RS03 exige MFA administrativo e nova autenticação antes de operações sensíveis, como alterar dados bancários ou confirmar reembolso.
 
-#### 4. Arquitetura segura
-“Como resposta, a arquitetura do sistema foi organizada com borda da API, autenticação centralizada, autorização no servidor, logs e separação de funções. Isso reduz riscos antes mesmo da implementação do código.”
+Esses requisitos foram relacionados às vulnerabilidades CWE-770, sobre ausência de limites; CWE-639, sobre falha de autorização; e CWE-287, sobre autenticação inadequada.”
 
-#### 5. Código seguro
-“Na prática, mostramos duas medidas essenciais: autorização por vínculo com pedido ativo e reautenticação para operações sensíveis. Os testes foram definidos antes da implementação e verificam cenários válidos e não autorizados.”
+### Etapa 3: arquitetura e decisões
 
-#### 6. Verificação e vulnerabilidades
-“Também realizamos uma verificação com ZAP em um ambiente controlado. O objetivo foi observar alertas relevantes, interpretar os achados e propor correções. Isso reforça a importância da validação real e não apenas da análise teórica.”
+“No diagrama, as aplicações se comunicam com um API Gateway e WAF, que limitam requisições antes que o tráfego alcance os serviços internos.
 
-#### 7. Monitoramento
-“Depois da implantação, a operação deve registrar acessos, autenticações, falhas e alterações sensíveis. Regras de detecção ajudam a identificar força bruta, sobrecarga de API e consultas indevidas a dados de entrega.”
+A autenticação centralizada utiliza MFA e sessões revogáveis. Nos serviços de negócio, a autorização é validada no servidor considerando perfil, vínculo com o pedido e estado da operação. Banco de dados e integrações ficam atrás desses controles, enquanto logs centralizados apoiam auditoria.
 
-#### 8. DevSecOps
-“Em conjunto, o pipeline de segurança conecta planejamento, arquitetura, implementação, testes, verificação, implantação e monitoramento. A ideia é que falhas críticas bloqueiem o avanço do projeto e que a segurança acompanhe a entrega contínua.”
+As decisões DA01, DA02 e DA03 tratam, respectivamente, disponibilidade, proteção dos dados de entrega e uso indevido de contas.”
 
-#### 9. Fechamento
-“Na prática, aprendemos que segurança precisa começar antes da implementação e continuar durante a operação. O sucesso do sistema depende da combinação de políticas, arquitetura, código seguro, testes e resposta a incidentes.”
+### Etapa 4: testes e práticas seguras
 
----
+“Na Etapa 4 selecionamos autorização por vínculo com pedido ativo e reautenticação para operações sensíveis. Os testes foram definidos antes do pseudocódigo.
 
-## 5. Participação dos integrantes no vídeo
+Na primeira prática, o TS01 permite ao entregador consultar seu pedido ativo. O TS02 bloqueia pedidos de outro entregador e o TS03 impede acesso após a entrega. A API nega por padrão e valida perfil, vínculo e status em cada solicitação.
 
-| Integrante | Trecho principal | Tempo aproximado |
-| --- | --- | --- |
-| Ismael Hister Oliveira | Abertura, sistema, ameaças e casos de abuso | 00:00–01:45 |
-| Davi Tito Tafernaberry | Riscos prioritários, requisitos, arquitetura e código seguro | 01:45–04:30 |
-| Ezequiel dos Santos Pereira | Ambiente autorizado, execução do ZAP e três achados selecionados | 04:30–05:15 |
-| Luis Francisco Brum Gomes | Detecção, resposta, pipeline DevSecOps, aprendizados e fechamento | 05:15–07:30 |
+Na segunda prática, o TS04 confirma reembolso somente com MFA recente. O TS05 recusa a operação sem reautenticação e o TS06 bloqueia comprovantes expirados ou reutilizados. A confirmação possui uso único, é vinculada ao reembolso e consumida na mesma transação. Uma chave de idempotência impede processamento duplicado.”
 
-A divisão pode ser ajustada durante a gravação, mas todos devem aparecer ou narrar uma parte identificável. A contribuição permanece compatível com o histórico de commits e com as tarefas executadas ao longo do projeto.
+### Encerramento das Etapas 3 e 4
 
-### Publicação do vídeo
+“Assim, os riscos foram convertidos em requisitos mensuráveis, posicionados na arquitetura e representados por testes e práticas de implementação. Essa rastreabilidade permite verificar se os controles realmente tratam os riscos prioritários do Entrega Fácil.”
 
-Após a gravação, o grupo deve publicar o vídeo em local acessível ao professor e substituir o marcador correspondente no `README.md` pelo endereço final. Antes da entrega, o link deve ser testado em uma janela anônima para confirmar que não depende da conta de um integrante.
+## Etapa 5 — Ezequiel
 
----
+### Objetivo e ambiente autorizado
 
-## 6. Considerações finais
+“Na Etapa 5 verificamos como uma ferramenta identifica possíveis falhas em uma aplicação web. Utilizamos o OWASP Juice Shop, executado localmente e criado para treinamento. Assim, o teste ocorreu em ambiente controlado e autorizado, sem analisar sistemas de terceiros.”
 
-A Etapa 7 consolida o trabalho da disciplina e mostra que a segurança deve ser tratada como parte do ciclo de desenvolvimento, e não como uma etapa isolada ao final. O Entrega Fácil foi analisado com base em ameaças reais, riscos priorizados, arquitetura segura, testes de segurança, monitoramento e resposta a eventos.
+### Ferramenta e execução
 
-A proposta de DevSecOps apresentada é simples, porém coerente com o nível do trabalho acadêmico. Ela demonstra que, mesmo sem implementar um pipeline completo, é possível mostrar uma visão realista de como a segurança pode acompanhar continuamente o software.
+“Utilizamos o OWASP ZAP 2.17.0 para uma varredura automatizada no endereço local da aplicação, com política padrão, spider tradicional e spider moderno. As capturas registram a configuração, a conclusão e os alertas encontrados.”
 
-Essa etapa fecha o ciclo da disciplina ao conectar análise, decisão, implementação, verificação e operação.
+### Três achados selecionados
+
+“Entre os resultados, selecionamos três achados para análise. O A01 foi uma possível injeção SQL no endpoint de pesquisa. Esse problema pode permitir que uma entrada altere a consulta ao banco. A correção proposta é usar consultas parametrizadas, evitar concatenação de entrada e aplicar privilégio mínimo no banco de dados.
+
+O A02 foi uma configuração CORS permissiva, com origem curinga. A recomendação é usar uma lista explícita de origens confiáveis e testar separadamente os endpoints autenticados.
+
+O A03 foi a ausência do cabeçalho Content Security Policy. Ela não cria uma injeção isoladamente, mas reduz a proteção caso outra falha permita conteúdo malicioso. A proposta é configurar uma política restritiva, primeiro em modo de relatório.”
+
+### Limitações, relação com o projeto e conclusão
+
+“Os alertas do ZAP não comprovam sozinhos que uma vulnerabilidade é explorável. Por isso, consideramos contexto, possíveis falsos positivos e a necessidade de confirmação manual. Embora o teste tenha usado o Juice Shop, os resultados orientam o Entrega Fácil na proteção de consultas, APIs e interfaces. Nenhum achado foi considerado corrigido apenas pela proposta: após implementar os controles, seria necessária uma nova varredura para produzir evidências da correção.”
+
+## Etapa 6 — Luis Francisco
+
+### Conceito e objetivo
+
+“Na Etapa 6 definimos como o Entrega Fácil identificaria comportamentos suspeitos em operação. Prevenir significa aplicar controles como MFA, autorização e limitação de requisições. Detectar significa perceber rapidamente uma tentativa ou atividade anormal, inclusive quando a prevenção não foi suficiente.”
+
+### Eventos e fontes de dados
+
+“O sistema deve registrar autenticações, falhas de MFA, sessões, acessos negados, consultas a dados pessoais, mudanças em pedidos e pagamentos, ações administrativas e eventos da API. Os logs devem conter ator, ação, recurso, origem, horário e resultado, sem expor dados sensíveis.”
+
+### Três regras de detecção
+
+“A primeira regra trata o R01, de uso indevido de conta. Mais de dez logins malsucedidos para a mesma conta ou origem, em dois minutos, geram alerta, limitação progressiva e desafio adicional. Sessões só são revogadas quando outros sinais indicam comprometimento.
+
+A segunda regra observa o R09, de indisponibilidade da API. Mais de cem requisições por segundo pela mesma origem, ou muitas respostas 429, acionam o WAF, limitação mais rigorosa e alerta.
+
+A terceira regra trata o R07, de exposição de dados. Cinco acessos negados a pedidos diferentes, pela mesma conta em dez minutos, podem indicar varredura. O sistema limita consultas, preserva evidências e solicita nova autenticação.”
+
+### Resposta e melhoria contínua
+
+“Depois do alerta, a equipe realiza a triagem para confirmar o incidente ou falso positivo e classificar sua gravidade. Em seguida, contém o evento, preserva registros, investiga a causa, corrige a falha e recupera os serviços. Uma revisão pós-incidente avalia a resposta e ajusta as regras. Assim, o monitoramento complementa a prevenção e melhora continuamente a segurança do Entrega Fácil.”
+
+## Etapa 7 — Pipeline DevSecOps
+
+### Conceito
+
+“Na Etapa 7 reunimos os resultados em um pipeline DevSecOps, integrando segurança a todo o ciclo de desenvolvimento, e não somente à implantação.”
+
+### Fluxo do pipeline
+
+“O fluxo começa com STRIDE e análise de riscos. Os riscos prioritários geram requisitos e decisões de arquitetura. Na implementação, aplicamos código seguro e testes automatizados. Depois, código e dependências passam por análise estática, e a aplicação é verificada com o ZAP. Após a aprovação, ocorre a implantação controlada. Em operação, logs e regras de detecção apoiam resposta e melhoria contínua.”
+
+### Condições de bloqueio
+
+“O pipeline é bloqueado por teste crítico reprovado, segredo exposto, dependência crítica sem tratamento ou falha de acesso administrativo. Cada fase produz evidências, como testes, relatórios e logs. Assim, a implantação depende de critérios verificáveis, enquanto o monitoramento retorna informações ao planejamento e mantém a segurança em evolução.”
