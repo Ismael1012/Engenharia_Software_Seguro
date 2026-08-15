@@ -2,6 +2,8 @@
 
 Este arquivo reúne, sem resumir as falas já elaboradas, os roteiros das Etapas 1 a 7 e a apresentação do pipeline DevSecOps. Os arquivos separados podem ser mantidos como apoio individual para os apresentadores.
 
+**Vídeo publicado:** [Apresentação final do projeto Entrega Fácil](https://www.youtube.com/watch?v=PF098TNM8EY)
+
 ## Etapas 1 e 2 — Ismael
 
 ### Introdução
@@ -135,3 +137,7 @@ A terceira regra trata o R07, de exposição de dados. Cinco acessos negados a p
 ### Condições de bloqueio
 
 “O pipeline é bloqueado por teste crítico reprovado, segredo exposto, dependência crítica sem tratamento ou falha de acesso administrativo. Cada fase produz evidências, como testes, relatórios e logs. Assim, a implantação depende de critérios verificáveis, enquanto o monitoramento retorna informações ao planejamento e mantém a segurança em evolução.”
+
+## Aprendizados e encerramento — Grupo
+
+“Com este trabalho, aprendemos que a segurança não deve ser pensada apenas depois que o sistema está pronto. Ela começa na identificação das ameaças, continua na análise dos riscos, influencia a arquitetura e o código e precisa ser verificada e monitorada durante toda a operação. Também entendemos a importância de documentar as decisões e manter uma relação clara entre riscos, controles e testes. Como grupo, percebemos que desenvolver software seguro é um processo contínuo e uma responsabilidade compartilhada por todos. Obrigado pela atenção.”

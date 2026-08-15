@@ -72,7 +72,7 @@ Repositório do grupo: [github.com/Ismael1012/Engenharia_Software_Seguro](https:
 
 [Acessar o pipeline, os critérios de bloqueio e o roteiro do vídeo final](etapas/etapa-7-devsecops-video/devsecops-video-final.md).
 
-> **Vídeo final:** inserir aqui o endereço compartilhado do vídeo após a publicação, verificando o acesso pelo professor.
+> **Vídeo final:** [Assistir à apresentação do projeto no YouTube](https://www.youtube.com/watch?v=PF098TNM8EY).
 
 ## Organização do repositório
 
