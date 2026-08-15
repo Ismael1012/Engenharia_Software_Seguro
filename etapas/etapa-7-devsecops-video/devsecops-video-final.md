@@ -2,7 +2,7 @@
 
 Este arquivo reúne, sem resumir as falas já elaboradas, os roteiros das Etapas 1 a 7 e a apresentação do pipeline DevSecOps. Os arquivos separados podem ser mantidos como apoio individual para os apresentadores.
 
-**Vídeo publicado:** [Apresentação final do projeto Entrega Fácil](https://www.youtube.com/watch?v=PF098TNM8EY)
+**Vídeo publicado:** [Apresentação final do projeto Entrega Fácil](https://www.youtube.com/watch?v=arO6msi1nhE&feature=youtu.be)
 
 ## Etapas 1 e 2 — Ismael
 
